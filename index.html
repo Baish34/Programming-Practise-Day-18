@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    type="text/css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="pt-3">To-Do List</h1>
+    <label for="taskInput">Enter Task:</label>
+    <input type="text" id="taskInput" class="form-control" /><br>
+    <label for="day">Select Day:</label>
+    <select id="day" class="form-control" style="appearance: auto;">
+      <option value="today">Today</option>
+      <option value="tomorrow">Tomorrrow</option>
+    </select><br>
+    <button id="addTask" class="btn btn-primary">Add task</button>
+    <div class="row pt-3">
+      <div class="col-md-6">
+        <h2>Today's Tasks:</h2>
+        <ul id="todayTask" class="list-group"></ul>
+      </div>
+      <div class="col-md-6">
+        <h2>Tomorrow's Tasks:</h2>
+        <ul id="tomorrowTask" class="list-group"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const taskInput = document.querySelector("#taskInput")
+    const day = document.querySelector("#day")
+    const addTask = document.querySelector("#addTask")
+    const todayTask = document.querySelector("#todayTask")
+    const tomorrowTask = document.querySelector("#tomorrowTask")
+
+    addTask.addEventListener("click", function () {
+      const taskText = taskInput.value;
+      if (taskText === "") {
+        alert("please enter a task.");
+        return
+      }
+
+      const selectedDay = day.value;
+      const listItem = document.createElement("li");
+      listItem.className = 'list-group-item'
+      listItem.textContent = taskText;
+
+      if (selectedDay === "today") {
+        todayTask.appendChild(listItem);
+      } else if (selectedDay === "tomorrow") {
+        tomorrowTask.appendChild(listItem);
+      }
+
+      taskInput.value = "";
+    })
+  </script>
+</body>
+
+</html>
